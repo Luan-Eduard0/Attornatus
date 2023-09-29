@@ -43,7 +43,7 @@ public class EnderecoControllerTest {
 
     @Before
     public void setUp() {
-        // Initialize the ObjectMapper if not already injected
+        // Inicia o Object Mapper
         if (objectMapper == null) {
             objectMapper = new ObjectMapper();
         }
@@ -53,7 +53,7 @@ public class EnderecoControllerTest {
 
     @BeforeEach
     public void createPessoa() throws Exception {
-        // Create a Pessoa
+        // Cria a Pessoa
         Pessoa pessoa = new Pessoa();
         pessoa.setNome("Irineu");
         pessoa.setDataNascimento(Date.valueOf(LocalDate.of(1990, 1, 1)));

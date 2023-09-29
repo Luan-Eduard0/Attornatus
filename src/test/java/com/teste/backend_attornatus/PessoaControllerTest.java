@@ -46,13 +46,13 @@ public class PessoaControllerTest {
 
     @Test
     public void testEditarPessoa() throws Exception {
-        // Create an existing Pessoa object with a valid ID
+        // Atualiza Pessoas
         Pessoa pessoaExistente = new Pessoa();
         pessoaExistente.setId(1L);
         pessoaExistente.setNome("Maria");
         pessoaExistente.setDataNascimento(Date.valueOf(LocalDate.of(1985, 8, 20)));
 
-        // Define the expected response JSON
+        // Resposta definida
         String expectedResponse = "{\"id\":1,\"nome\":\"Maria\",\"dataNascimento\":\"1985-08-20\"}";
 
         mockMvc.perform(MockMvcRequestBuilders.put("/api/pessoa/{id}/atualizar", pessoaExistente.getId())
