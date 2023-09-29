@@ -3,9 +3,12 @@ package com.teste.backend_attornatus.controller;
 
 import com.teste.backend_attornatus.model.dao.Endereco;
 import com.teste.backend_attornatus.service.EnderecoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,10 +24,10 @@ public class EnderecoController {
     }
 
     @PostMapping(value = "/adicionar")
-    public ResponseEntity<Endereco> criarEndereco(@RequestBody Endereco endereco) {
+    public ResponseEntity<String> criarEndereco(@Valid @RequestBody Endereco endereco) {
         Endereco enderecoCriado = (enderecoService.save(endereco));
         enderecoService.marcarEnderecoPrincipal(endereco.getPessoa().getId(), enderecoCriado.getId());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.ok("Endereço adicionado com sucesso!");
     }
 
     @GetMapping(value = "/listar")
@@ -45,8 +48,17 @@ public class EnderecoController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-
+    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        StringBuilder errors = new StringBuilder();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String errorMessage = error.getDefaultMessage();
+            String fieldName = ((FieldError) error).getField(); // Obtém o nome do campo com erro
+            errors.append(fieldName).append(": ").append(errorMessage).append("\n");
+        });
+        return ResponseEntity.badRequest().body(errors.toString());
     }
 }
 

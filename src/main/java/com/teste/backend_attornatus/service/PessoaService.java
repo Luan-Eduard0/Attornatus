@@ -5,9 +5,6 @@ import com.teste.backend_attornatus.model.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +18,7 @@ public class PessoaService {
     }
 
 
-    public Pessoa AdicionarPessoa(Pessoa pessoa){
+    public Pessoa save(Pessoa pessoa){
         return pessoaRepository.save(pessoa);
     }
 

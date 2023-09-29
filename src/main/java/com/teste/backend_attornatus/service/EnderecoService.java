@@ -26,6 +26,10 @@ public class EnderecoService {
     public List<Endereco> findByEnderecoPrincipal(String nome) {
         return enderecoRepository.findByEnderecoPrincipal(nome);
     }
+    public Endereco findById(Long id) {
+        Optional<Endereco> enderecoOptional = enderecoRepository.findById(id);
+        return enderecoOptional.orElse(null);
+    }
     //Metodo para Houver apenas um endereço principal
     @Transactional
     public void marcarEnderecoPrincipal(Long pessoaId, Long enderecoId) {
