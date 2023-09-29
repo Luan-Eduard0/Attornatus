@@ -87,7 +87,7 @@ POST /api/pessoa/adicionar
 
 {
   "dataNascimento": "2023-09-29",
-  "nome": "John Doe"
+  "nome": "Jorge Flores"
 }
 
 ```
@@ -99,7 +99,7 @@ PUT /api/pessoa/1
 
 {
   "dataNascimento": "2023-10-01",
-  "nome": "Jane Doe"
+  "nome": "Jorge Alves"
 }
 
 ```
@@ -123,5 +123,87 @@ GET /api/pessoa/listar
 ```
 GET /api/pessoa/buscarPorNome/John
 
+```
+
+**API de Endereço**
+
+Esta API fornece endpoints para criar, listar e buscar endereços.
+
+**Endpoints da API**
+
+A API possui os seguintes endpoints:
+
+* `/api/endereco/adicionar`: Cria um novo endereço.
+* `/api/endereco/listar`: Lista todos os endereços.
+* `/api/endereco/listarEnderecoPrincipal`: Lista o endereço principal de uma pessoa.
+
+**Parâmetros e retornos dos endpoints**
+
+Os parâmetros e retornos dos endpoints são os seguintes:
+
+### Endpoint `/api/endereco/adicionar`
+
+**Parâmetros:**
+
+* `Endereco`: Um objeto do tipo `Endereco`, que contém os dados do endereço a ser criado.
+
+**Retornos:**
+
+* `String`: Uma mensagem de sucesso confirmando que o endereço foi criado.
+
+### Endpoint `/api/endereco/listar`
+
+**Parâmetros:**
+
+* `nome`: O nome da pessoa cujos endereços serão listados.
+
+**Retornos:**
+
+* Uma lista de objetos do tipo `Endereco`, que contém os dados de todos os endereços da pessoa.
+
+### Endpoint `/api/endereco/listarEnderecoPrincipal`
+
+**Parâmetros:**
+
+* `nome`: O nome da pessoa cujo endereço principal será listado.
+
+**Retornos:**
+
+* Um objeto do tipo `Endereco`, que contém os dados do endereço principal da pessoa.
+
+**Erros que podem ser retornados pela API**
+
+Os erros que podem ser retornados pela API são os seguintes:
+
+* `400 Bad Request`: Se o parâmetro `Endereco` for inválido.
+* `404 Not Found`: Se o endereço não for encontrado.
+
+**Exemplos**
+
+### Criar um novo endereço
+
+```
+POST /api/endereco/adicionar
+
+{
+  "logradouro": "Rua das Flores",
+  "cep": "12345-678",
+  "numero": 100,
+  "cidade": "São Paulo",
+  "enderecoPrincipal": true
+}
+
+```
+
+### Listar todos os endereços de uma pessoa
+
+```
+GET /api/endereco/listar?nome=João
+```
+
+### Listar o endereço principal de uma pessoa
+
+```
+GET /api/endereco/listarEnderecoPrincipal?nome=João
 ```
 
