@@ -75,8 +75,8 @@ Nenhum.
 
 Os erros que podem ser retornados pela API são os seguintes:
 
-* `400 Bad Request`: Se o parâmetro `dataNascimento` for inválido.
-* `404 Not Found`: Se o ID da pessoa não for encontrado.
+* `400/404`:
+* erros de validação de campos
 
 ## Exemplos
 
@@ -92,8 +92,7 @@ POST /api/pessoa/adicionar
 
 ```
 
-### Atualizar uma pessoa existente
-
+### Adicionar Uma Pessoa
 ```
 PUT /api/pessoa/1
 
@@ -104,27 +103,27 @@ PUT /api/pessoa/1
 
 ```
 
-### Buscar uma pessoa pelo ID
+### Atualizar uma pessoa pelo ID
 
 ```
 GET /api/pessoa/1
 
 ```
 
-### Listar todas as pessoas
+### Listar pelo id
 
 ```
 GET /api/pessoa/listar
 
 ```
 
-### Buscar pessoas pelo nome
-
+### Listar todas as Pessoas
 ```
 GET /api/pessoa/buscarPorNome/John
 
 ```
-
+### Buscar pessoas pelo nome
+```
 **API de Endereço**
 
 Esta API fornece endpoints para criar, listar e buscar endereços.
@@ -191,6 +190,9 @@ POST /api/endereco/adicionar
   "numero": 100,
   "cidade": "São Paulo",
   "enderecoPrincipal": true
+"pessoa": {
+    "id": 1
+  }
 }
 
 ```
@@ -198,12 +200,13 @@ POST /api/endereco/adicionar
 ### Listar todos os endereços de uma pessoa
 
 ```
-GET /api/endereco/listar?nome=João
+GET /api/endereco/listar?nome=NomePessoa
 ```
 
 ### Listar o endereço principal de uma pessoa
 
 ```
-GET /api/endereco/listarEnderecoPrincipal?nome=João
+GET /api/endereco/listarEnderecoPrincipal?nome=NomePessoa
 ```
-
+O sistema ainda Conta Com Uma verificação unica do Endereço principal na qual somente um endereço pode ser principal 
+Tratamento e validações de erros
