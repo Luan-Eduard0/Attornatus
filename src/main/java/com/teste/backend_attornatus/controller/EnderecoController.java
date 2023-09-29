@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/endereco", produces = "application/json")
+
 public class EnderecoController {
     private final EnderecoService enderecoService;
 
