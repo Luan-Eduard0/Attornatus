@@ -22,7 +22,7 @@ Os parâmetros e retornos dos endpoints são os seguintes:
 
 **Parâmetros:**
 
-* `dataNascimento`: A data de nascimento da pessoa, no formato `YYYY-MM-DD`.
+* `dataNascimento`: A data de nascimento da pessoa, no formato `DD-MM-YYYY`.
 * `nome`: O nome da pessoa.
 
 **Retornos:**
