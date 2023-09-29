@@ -28,7 +28,7 @@ public class EnderecoController {
     public ResponseEntity<String> criarEndereco(@Valid @RequestBody Endereco endereco) {
         Endereco enderecoCriado = (enderecoService.save(endereco));
         enderecoService.marcarEnderecoPrincipal(endereco.getPessoa().getId(), enderecoCriado.getId());
-        return ResponseEntity.ok("Endereço adicionado com sucesso!");
+        return ResponseEntity.ok("Endereco adicionado com sucesso!");
     }
 
     @GetMapping(value = "/listar")
